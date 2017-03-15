@@ -2,6 +2,8 @@ package service;
 
 import exceptions.NoEscapeException;
 
+import java.util.Map;
+
 /**
  * Please implement your solution here
  */
@@ -24,4 +26,5 @@ public class LabEscape {
         //Would be nice if this was not static for testing. But not sure if I can change it so i'll bear with it.
         return new char[][]{};
     }
+
 }
