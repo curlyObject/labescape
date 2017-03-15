@@ -1,11 +1,8 @@
 package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.bind.annotation.*;
 import service.MazeService;
-
-import java.util.Arrays;
 
 /**
  * Controller to submit a maze to be solved
