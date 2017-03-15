@@ -21,7 +21,7 @@ public class LabEscape {
      * @throws NoEscapeException when no path exists to the outside, from the selected starting point
      */
     public static char[][] drawPathForEscape(char[][] labyrinth, int startX, int startY) throws NoEscapeException {
-
-        throw new UnsupportedOperationException("please implement"); // TODO
+        //Would be nice if this was not static for testing. But not sure if I can change it so i'll bear with it.
+        return new char[][]{};
     }
 }

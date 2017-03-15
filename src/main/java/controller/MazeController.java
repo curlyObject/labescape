@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.NoEscapeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import service.MazeService;
@@ -21,7 +22,7 @@ public class MazeController {
     @RequestMapping(path = "/solve", method = RequestMethod.GET)
     public @ResponseBody String solveMaze(@RequestParam("maze") String maze,
                                           @RequestParam("startX") int startX,
-                                          @RequestParam("startY") int startY){
+                                          @RequestParam("startY") int startY) throws NoEscapeException {
         mazeService.solveMaze(maze, startX, startY);
         return maze;
     }
