@@ -1,5 +1,6 @@
 package service;
 
+import exceptions.IllegalStartPositionException;
 import exceptions.NoEscapeException;
 import org.assertj.core.data.Index;
 import org.junit.Test;
@@ -9,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LabEscapeTest {
 
     @Test
-    public void testEscape_OneWayOut_Simple() throws NoEscapeException{
+    public void testEscape_OneWayOut_Simple() throws Exception{
         char[][] maze = {   new char[]{'O', ' ', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O'},
                             new char[]{'O', 'O', ' ', 'O'},
@@ -27,7 +28,7 @@ public class LabEscapeTest {
     }
 
     @Test
-    public void testEscape_OneWayOut_OnTheEdge() throws NoEscapeException{
+    public void testEscape_OneWayOut_OnTheEdge() throws Exception{
         char[][] maze = {   new char[]{'O', ' ', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O'},
                             new char[]{'O', 'O', ' ', 'O'},
@@ -45,7 +46,7 @@ public class LabEscapeTest {
     }
 
     @Test
-    public void testEscape_TwoWaysOut_BothShortest() throws NoEscapeException{
+    public void testEscape_TwoWaysOut_BothShortest() throws Exception{
         char[][] maze = {   new char[]{'O', ' ', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O'},
                             new char[]{'O', 'O', ' ', ' '},
@@ -63,7 +64,7 @@ public class LabEscapeTest {
     }
 
     @Test
-    public void testEscape_TwoWaysOut_OneShortest() throws NoEscapeException{
+    public void testEscape_TwoWaysOut_OneShortest() throws Exception{
         char[][] maze = {   new char[]{'O', ' ', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O'},
                             new char[]{'O', 'O', ' ', ' '},
@@ -83,7 +84,7 @@ public class LabEscapeTest {
 
 
     @Test
-    public void testEscape_OneWayOut_Complex() throws NoEscapeException{
+    public void testEscape_OneWayOut_Complex() throws Exception{
         char[][] maze = {   new char[]{'O', 'O', 'O', 'O', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O', ' ', ' '},
                             new char[]{'O', 'O', ' ', ' ', ' ', 'O'},
@@ -103,8 +104,28 @@ public class LabEscapeTest {
                 .contains(new char[]{'O', 'O', 'O', 'O', ' ', ' '}, Index.atIndex(5));
     }
 
+    @Test(expected = IllegalStartPositionException.class)
+    public void testEscape_IllegalX() throws Exception{
+        char[][] maze = {   new char[]{'O', 'O', 'O', 'O'},
+                            new char[]{'O', ' ', ' ', 'O'},
+                            new char[]{'O', 'O', ' ', 'O'},
+                            new char[]{'O', 'O', 'O', 'O'}};
+        int startX = 0, startY = 2;
+        LabEscape.drawPathForEscape(maze, startX, startY);
+    }
+
+    @Test(expected = IllegalStartPositionException.class)
+    public void testEscape_IllegalY() throws Exception{
+        char[][] maze = {   new char[]{'O', 'O', 'O', 'O'},
+                            new char[]{'O', ' ', ' ', 'O'},
+                            new char[]{'O', 'O', ' ', 'O'},
+                            new char[]{'O', 'O', 'O', 'O'}};
+        int startX = 2, startY = 0;
+        LabEscape.drawPathForEscape(maze, startX, startY);
+    }
+
     @Test(expected = NoEscapeException.class)
-    public void testEscape_NoWayOut_Simple() throws NoEscapeException{
+    public void testEscape_NoWayOut_Simple() throws Exception{
         char[][] maze = {   new char[]{'O', 'O', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O'},
                             new char[]{'O', 'O', ' ', 'O'},
@@ -115,7 +136,7 @@ public class LabEscapeTest {
     }
 
     @Test(expected = NoEscapeException.class)
-    public void testEscape_NoWayOut_Complex() throws NoEscapeException{
+    public void testEscape_NoWayOut_Complex() throws Exception{
         char[][] maze = {   new char[]{'O', 'O', 'O', 'O', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O', ' ', ' '},
                             new char[]{'O', 'O', ' ', ' ', 'O', 'O'},

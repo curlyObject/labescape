@@ -1,5 +1,6 @@
 package service;
 
+import exceptions.IllegalStartPositionException;
 import exceptions.NoEscapeException;
 
 import java.util.Map;
@@ -22,7 +23,7 @@ public class LabEscape {
      * @return          A char matrix with the same labyrinth and a path drawn from the starting point to the escape
      * @throws NoEscapeException when no path exists to the outside, from the selected starting point
      */
-    public static char[][] drawPathForEscape(char[][] labyrinth, int startX, int startY) throws NoEscapeException {
+    public static char[][] drawPathForEscape(char[][] labyrinth, int startX, int startY) throws NoEscapeException, IllegalStartPositionException {
         //Would be nice if this was not static for testing. But not sure if I can change it so i'll bear with it.
         return new char[][]{};
     }
