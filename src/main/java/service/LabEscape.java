@@ -1,3 +1,7 @@
+package service;
+
+import exceptions.NoEscapeException;
+
 /**
  * Please implement your solution here
  */
@@ -14,7 +18,7 @@ public class LabEscape {
      * @param startX    Starting row number for the escape. 0 based.
      * @param startY    Starting column number for the escape. 0 based.
      * @return          A char matrix with the same labyrinth and a path drawn from the starting point to the escape
-     * @throws          NoEscapeException when no path exists to the outside, from the selected starting point
+     * @throws NoEscapeException when no path exists to the outside, from the selected starting point
      */
     public static char[][] drawPathForEscape(char[][] labyrinth, int startX, int startY) throws NoEscapeException {
 
