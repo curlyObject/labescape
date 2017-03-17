@@ -1,7 +1,7 @@
-package service;
+package main.service;
 
-import exceptions.IllegalStartPositionException;
-import exceptions.NoEscapeException;
+import main.exceptions.IllegalStartPositionException;
+import main.exceptions.NoEscapeException;
 import org.assertj.core.data.Index;
 import org.junit.Test;
 

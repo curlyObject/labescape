@@ -1,9 +1,9 @@
-package service;
+package main.service;
 
-import exceptions.IllegalStartPositionException;
-import exceptions.NoEscapeException;
-import util.Coordinate;
-import util.Path;
+import main.exceptions.IllegalStartPositionException;
+import main.exceptions.NoEscapeException;
+import main.util.Coordinate;
+import main.util.Path;
 
 import java.util.*;
 

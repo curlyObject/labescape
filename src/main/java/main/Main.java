@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Entry point for the java program.
  *
- * Creates and starts the spring web service
+ * Creates and starts the spring web main.service
  */
 @SpringBootApplication
 public class Main {
