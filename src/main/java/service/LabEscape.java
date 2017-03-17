@@ -40,8 +40,8 @@ public class LabEscape {
             throw new IllegalStartPositionException("The starting X and Y coordinates will put you in a wall!");
         }
         Path shortestPath = getShortestPath(findPaths(labyrinth, new Coordinate(startX, startY), new Path(), new HashSet<>()));
-
-        return new char[][]{};
+        shortestPath.coordinateStream().forEach(coordinate -> labyrinth[coordinate.getY()][coordinate.getX()] = PATH);
+        return labyrinth;
     }
 
     private static Set<Path> findPaths(char[][] labyrinth, Coordinate currentPosition, Path currentPath, Set<Path> allPaths) throws NoEscapeException{

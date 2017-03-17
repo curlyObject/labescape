@@ -20,9 +20,9 @@ public class LabEscapeTest {
 
         assertThat(mazeWithEscape)
                 .hasSize(4)
-                .contains(new char[]{'O', '.', 'O', 'O'}, Index.atIndex(0))
-                .contains(new char[]{'O', '.', '.', 'O'}, Index.atIndex(1))
-                .contains(new char[]{'O', 'O', '.', 'O'}, Index.atIndex(2))
+                .contains(new char[]{'O', '•', 'O', 'O'}, Index.atIndex(0))
+                .contains(new char[]{'O', '•', '•', 'O'}, Index.atIndex(1))
+                .contains(new char[]{'O', 'O', '•', 'O'}, Index.atIndex(2))
                 .contains(new char[]{'O', 'O', 'O', 'O'}, Index.atIndex(3));
 
     }
@@ -38,7 +38,7 @@ public class LabEscapeTest {
 
         assertThat(mazeWithEscape)
                 .hasSize(4)
-                .contains(new char[]{'O', '.', 'O', 'O'}, Index.atIndex(0))
+                .contains(new char[]{'O', '•', 'O', 'O'}, Index.atIndex(0))
                 .contains(new char[]{'O', ' ', ' ', 'O'}, Index.atIndex(1))
                 .contains(new char[]{'O', 'O', ' ', 'O'}, Index.atIndex(2))
                 .contains(new char[]{'O', 'O', 'O', 'O'}, Index.atIndex(3));
@@ -57,8 +57,8 @@ public class LabEscapeTest {
         assertThat(mazeWithEscape)
                 .hasSize(4)
                 .contains(new char[]{'O', ' ', 'O', 'O'}, Index.atIndex(0))
-                .contains(new char[]{'O', ' ', '.', 'O'}, Index.atIndex(1))
-                .contains(new char[]{'O', 'O', '.', '.'}, Index.atIndex(2))
+                .contains(new char[]{'O', ' ', '•', 'O'}, Index.atIndex(1))
+                .contains(new char[]{'O', 'O', '•', '•'}, Index.atIndex(2))
                 .contains(new char[]{'O', 'O', 'O', 'O'}, Index.atIndex(3));
 
     }
@@ -74,8 +74,8 @@ public class LabEscapeTest {
 
         assertThat(mazeWithEscape)
                 .hasSize(4)
-                .contains(new char[]{'O', '.', 'O', 'O'}, Index.atIndex(0))
-                .contains(new char[]{'O', '.', ' ', 'O'}, Index.atIndex(1))
+                .contains(new char[]{'O', '•', 'O', 'O'}, Index.atIndex(0))
+                .contains(new char[]{'O', '•', ' ', 'O'}, Index.atIndex(1))
                 .contains(new char[]{'O', 'O', ' ', ' '}, Index.atIndex(2))
                 .contains(new char[]{'O', 'O', 'O', 'O'}, Index.atIndex(3));
 
@@ -97,10 +97,10 @@ public class LabEscapeTest {
         assertThat(mazeWithEscape)
                 .hasSize(4)
                 .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
-                .contains(new char[]{'O', ' ', ' ', 'O', '.', '.'}, Index.atIndex(1))
-                .contains(new char[]{'O', 'O', '.', '.', '.', 'O'}, Index.atIndex(2))
-                .contains(new char[]{'O', 'O', '.', 'O', 'O', 'O'}, Index.atIndex(3))
-                .contains(new char[]{'O', '.', '.', 'O', ' ', 'O'}, Index.atIndex(4))
+                .contains(new char[]{'O', ' ', ' ', 'O', '•', '•'}, Index.atIndex(1))
+                .contains(new char[]{'O', 'O', '•', '•', '•', 'O'}, Index.atIndex(2))
+                .contains(new char[]{'O', 'O', '•', 'O', 'O', 'O'}, Index.atIndex(3))
+                .contains(new char[]{'O', '•', '•', 'O', ' ', 'O'}, Index.atIndex(4))
                 .contains(new char[]{'O', 'O', 'O', 'O', ' ', ' '}, Index.atIndex(5));
     }
 
@@ -120,10 +120,10 @@ public class LabEscapeTest {
         assertThat(mazeWithEscape)
                 .hasSize(4)
                 .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
-                .contains(new char[]{'O', ' ', ' ', 'O', '.', '.'}, Index.atIndex(1))
-                .contains(new char[]{'O', 'O', '.', '.', '.', 'O'}, Index.atIndex(2))
-                .contains(new char[]{'O', 'O', '.', 'O', 'O', 'O'}, Index.atIndex(3))
-                .contains(new char[]{'O', '.', '.', 'O', ' ', 'O'}, Index.atIndex(4))
+                .contains(new char[]{'O', ' ', ' ', 'O', '•', '•'}, Index.atIndex(1))
+                .contains(new char[]{'O', 'O', '•', '•', '•', 'O'}, Index.atIndex(2))
+                .contains(new char[]{'O', 'O', '•', 'O', 'O', 'O'}, Index.atIndex(3))
+                .contains(new char[]{'O', '•', '•', 'O', ' ', 'O'}, Index.atIndex(4))
                 .contains(new char[]{'O', 'O', 'O', 'O', ' ', ' '}, Index.atIndex(5));
     }
 
@@ -143,10 +143,10 @@ public class LabEscapeTest {
         assertThat(mazeWithEscape)
                 .hasSize(4)
                 .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
-                .contains(new char[]{'O', ' ', ' ', 'O', '.', '.'}, Index.atIndex(1))
-                .contains(new char[]{'O', 'O', '.', '.', '.', 'O'}, Index.atIndex(2))
-                .contains(new char[]{'O', 'O', '.', 'O', 'O', 'O'}, Index.atIndex(3))
-                .contains(new char[]{'O', '.', '.', 'O', ' ', 'O'}, Index.atIndex(4))
+                .contains(new char[]{'O', ' ', ' ', 'O', '•', '•'}, Index.atIndex(1))
+                .contains(new char[]{'O', 'O', '•', '•', '•', 'O'}, Index.atIndex(2))
+                .contains(new char[]{'O', 'O', '•', 'O', 'O', 'O'}, Index.atIndex(3))
+                .contains(new char[]{'O', '•', '•', 'O', ' ', 'O'}, Index.atIndex(4))
                 .contains(new char[]{'O', 'O', 'O', 'O', ' ', ' '}, Index.atIndex(5));
     }
 
@@ -166,10 +166,10 @@ public class LabEscapeTest {
         assertThat(mazeWithEscape)
                 .hasSize(4)
                 .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
-                .contains(new char[]{'O', ' ', ' ', 'O', '.', '.'}, Index.atIndex(1))
-                .contains(new char[]{'O', 'O', '.', '.', '.', 'O'}, Index.atIndex(2))
-                .contains(new char[]{'O', 'O', '.', 'O', 'O', 'O'}, Index.atIndex(3))
-                .contains(new char[]{'O', '.', '.', 'O', ' ', 'O'}, Index.atIndex(4))
+                .contains(new char[]{'O', ' ', ' ', 'O', '•', '•'}, Index.atIndex(1))
+                .contains(new char[]{'O', 'O', '•', '•', '•', 'O'}, Index.atIndex(2))
+                .contains(new char[]{'O', 'O', '•', 'O', 'O', 'O'}, Index.atIndex(3))
+                .contains(new char[]{'O', '•', '•', 'O', ' ', 'O'}, Index.atIndex(4))
                 .contains(new char[]{'O', 'O', 'O', 'O', ' ', ' '}, Index.atIndex(5));
     }
 
@@ -229,7 +229,7 @@ public class LabEscapeTest {
         char[][] maze = {   new char[]{'O', 'O', 'O', 'O', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O', ' ', ' '},
                             new char[]{'O', 'O', ' ', ' ', 'O', 'O'},
-                            new char[]{'O', 'O', ' ', 'O', 'O', 'O'},
+                            new char[]{'O', ' ', ' ', 'O', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O', ' ', 'O'},
                             new char[]{'O', 'O', 'O', 'O', ' ', ' '}};
         int startX = 3, startY = 2;

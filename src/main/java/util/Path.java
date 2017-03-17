@@ -34,4 +34,8 @@ public class Path {
 
     public int getNumberOfSteps(){ return path.size();}
 
+    public Stream<Coordinate> coordinateStream(){
+        return path.stream();
+    }
+
 }
