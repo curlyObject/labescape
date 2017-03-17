@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 /**
  * Linked list of coordinates exposing only the needed linked list methods
  */
+// Lombok annotations can sometimes cause issues with some IDEs, it requires annotation pre-processing to be enabled.
 @EqualsAndHashCode
 @ToString
 @NoArgsConstructor

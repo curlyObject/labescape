@@ -1,0 +1,17 @@
+<label>Maze Width</label><input type="number" name="mazeWidth" min="1" [(ngModel)]="mazeWidth" (input)="updateMazeSize(mazeHeight, mazeWidth)">
+<label>Maze Height</label><input type="number" name="mazeHeight" min="1" [(ngModel)]="mazeHeight" (input)="updateMazeSize(mazeHeight, mazeWidth)">
+
+<h1>Hello</h1>
+<h3>{{mazeWidth}}</h3>
+<h3>{{mazeHeight}}</h3>
+
+<div *ngFor="let mazeRow of maze">
+  1
+  <span *ngFor="let mazeBlock of mazeRow">
+    2
+    {{mazeBlock.type}}
+  </span>
+
+</div>
+
+
