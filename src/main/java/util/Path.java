@@ -32,8 +32,6 @@ public class Path {
         return path.contains(coordinate);
     }
 
-    public Stream<Coordinate> coordinateStream(){
-        return path.stream();
-    }
+    public int getNumberOfSteps(){ return path.size();}
 
 }

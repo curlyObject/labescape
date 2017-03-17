@@ -127,6 +127,52 @@ public class LabEscapeTest {
                 .contains(new char[]{'O', 'O', 'O', 'O', ' ', ' '}, Index.atIndex(5));
     }
 
+    @Test
+    public void testEscape_OneWayOut_Complex_Rectangle_OneShorterThanTheOtherEscape() throws Exception{
+        char[][] maze = {   new char[]{'O', 'O', 'O', 'O', 'O', 'O'},
+                            new char[]{'O', ' ', ' ', 'O', ' ', '0'},
+                            new char[]{'O', 'O', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', 'O', ' ', 'O', ' ', 'O'},
+                            new char[]{'O', ' ', ' ', 'O', ' ', 'O'},
+                            new char[]{'O', ' ', '0', 'O', ' ', 'O'},
+                            new char[]{'O', ' ', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', 'O', 'O', 'O', ' ', ' '}};
+        int startX = 1, startY = 6;
+        char[][] mazeWithEscape = LabEscape.drawPathForEscape(maze, startX, startY);
+
+        assertThat(mazeWithEscape)
+                .hasSize(4)
+                .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
+                .contains(new char[]{'O', ' ', ' ', 'O', '.', '.'}, Index.atIndex(1))
+                .contains(new char[]{'O', 'O', '.', '.', '.', 'O'}, Index.atIndex(2))
+                .contains(new char[]{'O', 'O', '.', 'O', 'O', 'O'}, Index.atIndex(3))
+                .contains(new char[]{'O', '.', '.', 'O', ' ', 'O'}, Index.atIndex(4))
+                .contains(new char[]{'O', 'O', 'O', 'O', ' ', ' '}, Index.atIndex(5));
+    }
+
+    @Test
+    public void testEscape_OneWayOut_Complex_Rectangle_MulitpleEscapeROutes_OneShorterThanTheOthers() throws Exception{
+        char[][] maze = {   new char[]{'O', 'O', 'O', 'O', 'O', 'O'},
+                            new char[]{'O', ' ', ' ', 'O', ' ', ' '},
+                            new char[]{'O', 'O', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', 'O', ' ', 'O', ' ', 'O'},
+                            new char[]{'O', ' ', ' ', 'O', ' ', 'O'},
+                            new char[]{'O', ' ', '0', 'O', ' ', 'O'},
+                            new char[]{'O', ' ', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', 'O', 'O', 'O', ' ', ' '}};
+        int startX = 1, startY = 6;
+        char[][] mazeWithEscape = LabEscape.drawPathForEscape(maze, startX, startY);
+
+        assertThat(mazeWithEscape)
+                .hasSize(4)
+                .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
+                .contains(new char[]{'O', ' ', ' ', 'O', '.', '.'}, Index.atIndex(1))
+                .contains(new char[]{'O', 'O', '.', '.', '.', 'O'}, Index.atIndex(2))
+                .contains(new char[]{'O', 'O', '.', 'O', 'O', 'O'}, Index.atIndex(3))
+                .contains(new char[]{'O', '.', '.', 'O', ' ', 'O'}, Index.atIndex(4))
+                .contains(new char[]{'O', 'O', 'O', 'O', ' ', ' '}, Index.atIndex(5));
+    }
+
     @Test(expected = IllegalStartPositionException.class)
     public void testEscape_IllegalX() throws Exception{
         char[][] maze = {   new char[]{'O', 'O', 'O', 'O'},

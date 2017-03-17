@@ -6,8 +6,8 @@ import util.Coordinate;
 import util.Path;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -39,20 +39,39 @@ public class LabEscape {
         if (labyrinth[startY][startX] != FREE){
             throw new IllegalStartPositionException("The starting X and Y coordinates will put you in a wall!");
         }
-        solve(labyrinth, new Coordinate(startX, startY), new Path(), new HashSet<>());
+        Path shortestPath = getShortestPath(findPaths(labyrinth, new Coordinate(startX, startY), new Path(), new HashSet<>()));
+
         return new char[][]{};
     }
 
-    private static Path solve(char[][] labyrinth, Coordinate currentPosition, Path currentPath, Set<Path> allPaths){
+    private static Set<Path> findPaths(char[][] labyrinth, Coordinate currentPosition, Path currentPath, Set<Path> allPaths) throws NoEscapeException{
         // Check if I'm backtracking
         if (!currentPath.addCoordinate(currentPosition)) {
-            return currentPath;
+            return Collections.singleton(currentPath);
         }
-        if (allPaths.stream().anyMatch(path -> path.containsCoordinate(currentPosition)))
+        // Check if I've hit the edge of the maze
+        if (isEscaped(labyrinth, currentPosition)){
+            currentPath.setProvidesEscape(true);
+            return Collections.singleton(currentPath);
+        }
+        //TODO Get it to find if there is a path that has gotten to the current coordinate in less steps than you and Kill this Path if so
         if (isTopOpen(labyrinth, currentPosition)) {
-            allPaths.add(solve(labyrinth, currentPosition.moveUp(), currentPath, allPaths));
+            allPaths.addAll(findPaths(labyrinth, currentPosition.moveUp(), currentPath, allPaths));
         }
-        return new Path();
+        if (isRightOpen(labyrinth, currentPosition)) {
+            allPaths.addAll(findPaths(labyrinth, currentPosition.moveRight(), currentPath, allPaths));
+        }
+        if (isBottomOpen(labyrinth, currentPosition)) {
+            allPaths.addAll(findPaths(labyrinth, currentPosition.moveDown(), currentPath, allPaths));
+        }
+        if (isLeftOpen(labyrinth, currentPosition)) {
+            allPaths.addAll(findPaths(labyrinth, currentPosition.moveLeft(), currentPath, allPaths));
+        }
+        return allPaths;
+    }
+
+    private static Path getShortestPath(Set<Path> paths) throws NoEscapeException {
+        return paths.stream().filter(Path::isProvidesEscape).min(Comparator.comparingInt(Path::getNumberOfSteps)).orElseThrow(NoEscapeException::new);
     }
 
     /**
@@ -83,14 +102,14 @@ public class LabEscape {
     }
 
     private static boolean isRightOpen(char[][] labyrinth, Coordinate currentPosition) {
-        return labyrinth[currentPosition.getY() - 1][currentPosition.getX()] == FREE;
+        return labyrinth[currentPosition.getY()][currentPosition.getX()+1] == FREE;
     }
 
     private static boolean isBottomOpen(char[][] labyrinth, Coordinate currentPosition) {
-        return labyrinth[currentPosition.getY() - 1][currentPosition.getX()] == FREE;
+        return labyrinth[currentPosition.getY()+1][currentPosition.getX()] == FREE;
     }
 
     private static boolean isLeftOpen(char[][] labyrinth, Coordinate currentPosition) {
-        return labyrinth[currentPosition.getY() - 1][currentPosition.getX()] == FREE;
+        return labyrinth[currentPosition.getY()][currentPosition.getX()-1] == FREE;
     }
 }
