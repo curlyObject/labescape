@@ -5,10 +5,7 @@ import exceptions.NoEscapeException;
 import util.Coordinate;
 import util.Path;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Please implement your solution here
@@ -39,7 +36,7 @@ public class LabEscape {
         if (labyrinth[startY][startX] != FREE){
             throw new IllegalStartPositionException("The starting X and Y coordinates will put you in a wall!");
         }
-        Path shortestPath = getShortestPath(findPaths(labyrinth, new Coordinate(startX, startY), new Path(), new HashSet<>()));
+        Path shortestPath = getShortestPath(findPaths(labyrinth, new Coordinate(startX, startY), new Path(), new LinkedHashSet<>()));
         shortestPath.coordinateStream().forEach(coordinate -> labyrinth[coordinate.getY()][coordinate.getX()] = PATH);
         return labyrinth;
     }
