@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 @EqualsAndHashCode
 @ToString
 @NoArgsConstructor
-public class Path {
+public class Path implements Cloneable{
 
     private LinkedHashSet<Coordinate> path = new LinkedHashSet<>();
     private @Getter @Setter boolean providesEscape = false;
@@ -36,6 +36,12 @@ public class Path {
 
     public Stream<Coordinate> coordinateStream(){
         return path.stream();
+    }
+
+    public Path deepClone(){
+        Path path = new Path();
+        this.coordinateStream().forEach(coordinate -> path.addCoordinate(coordinate.deepClone()));
+        return path;
     }
 
 }

@@ -95,7 +95,7 @@ public class LabEscapeTest {
         char[][] mazeWithEscape = LabEscape.drawPathForEscape(maze, startX, startY);
 
         assertThat(mazeWithEscape)
-                .hasSize(4)
+                .hasSize(6)
                 .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
                 .contains(new char[]{'O', ' ', ' ', 'O', '•', '•'}, Index.atIndex(1))
                 .contains(new char[]{'O', 'O', '•', '•', '•', 'O'}, Index.atIndex(2))
@@ -141,7 +141,7 @@ public class LabEscapeTest {
         char[][] mazeWithEscape = LabEscape.drawPathForEscape(maze, startX, startY);
 
         assertThat(mazeWithEscape)
-                .hasSize(4)
+                .hasSize(8)
                 .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
                 .contains(new char[]{'O', ' ', ' ', 'O', '•', '•'}, Index.atIndex(1))
                 .contains(new char[]{'O', 'O', '•', '•', '•', 'O'}, Index.atIndex(2))
@@ -164,7 +164,7 @@ public class LabEscapeTest {
         char[][] mazeWithEscape = LabEscape.drawPathForEscape(maze, startX, startY);
 
         assertThat(mazeWithEscape)
-                .hasSize(4)
+                .hasSize(8)
                 .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
                 .contains(new char[]{'O', ' ', ' ', 'O', '•', '•'}, Index.atIndex(1))
                 .contains(new char[]{'O', 'O', '•', '•', '•', 'O'}, Index.atIndex(2))

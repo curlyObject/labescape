@@ -56,16 +56,16 @@ public class LabEscape {
         }
         //TODO Get it to find if there is a path that has gotten to the current coordinate in less steps than you and Kill this Path if so
         if (isTopOpen(labyrinth, currentPosition)) {
-            allPaths.addAll(findPaths(labyrinth, currentPosition.moveUp(), currentPath, allPaths));
+            allPaths.addAll(findPaths(labyrinth, currentPosition.moveUp(), currentPath.deepClone(), allPaths));
         }
         if (isRightOpen(labyrinth, currentPosition)) {
-            allPaths.addAll(findPaths(labyrinth, currentPosition.moveRight(), currentPath, allPaths));
+            allPaths.addAll(findPaths(labyrinth, currentPosition.moveRight(), currentPath.deepClone(), allPaths));
         }
         if (isBottomOpen(labyrinth, currentPosition)) {
-            allPaths.addAll(findPaths(labyrinth, currentPosition.moveDown(), currentPath, allPaths));
+            allPaths.addAll(findPaths(labyrinth, currentPosition.moveDown(), currentPath.deepClone(), allPaths));
         }
         if (isLeftOpen(labyrinth, currentPosition)) {
-            allPaths.addAll(findPaths(labyrinth, currentPosition.moveLeft(), currentPath, allPaths));
+            allPaths.addAll(findPaths(labyrinth, currentPosition.moveLeft(), currentPath.deepClone(), allPaths));
         }
         return allPaths;
     }

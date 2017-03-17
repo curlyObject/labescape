@@ -10,10 +10,10 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public class Coordinate {
+public class Coordinate implements Cloneable{
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public Coordinate moveUp(){
         return new Coordinate(this.x, this.y-1);
@@ -29,6 +29,10 @@ public class Coordinate {
 
     public Coordinate moveLeft(){
         return new Coordinate(this.x-1, this.y);
+    }
+
+    public Coordinate deepClone(){
+        return new Coordinate(this.x, this.y);
     }
 
 }
