@@ -1,5 +1,6 @@
 package service;
 
+import exceptions.IllegalStartPositionException;
 import exceptions.NoEscapeException;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class MazeService {
      * @return The maze as before but with the path out drawn into it
      * @throws NoEscapeException Thrown if there is no way to escape the maze
      */
-    public char[][] solveMaze(String maze, int startX, int startY) throws NoEscapeException {
+    public char[][] solveMaze(String maze, int startX, int startY) throws NoEscapeException, IllegalStartPositionException {
         return LabEscape.drawPathForEscape(translateStringMapTo2dCharArray(maze), startX, startY);
     }
 

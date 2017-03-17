@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.IllegalStartPositionException;
 import exceptions.NoEscapeException;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -66,6 +68,17 @@ public class MazeControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/maze/solve?maze="+maze+"&startX="+startX+"&startY="+startY))
                 .andExpect(status().is(UNPROCESSABLE_ENTITY.value()));
+
+    }
+
+    @Test
+    public void testMazeController_Solve_IllegalStart() throws Exception {
+        String maze = "0 000\n0  0\n00 0\n0000";
+        int startX = 1, startY = 2;
+        when(mazeServiceMock.solveMaze(maze, startX, startY)).thenThrow(IllegalStartPositionException.class);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/maze/solve?maze="+maze+"&startX="+startX+"&startY="+startY))
+                .andExpect(status().is(BAD_REQUEST.value()));
 
     }
 

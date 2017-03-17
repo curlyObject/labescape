@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.IllegalStartPositionException;
 import exceptions.NoEscapeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class MazeController {
     @RequestMapping(path = "/solve", method = RequestMethod.GET)
     public @ResponseBody String solveMaze(@RequestParam("maze") String maze,
                                           @RequestParam("startX") int startX,
-                                          @RequestParam("startY") int startY) throws NoEscapeException {
+                                          @RequestParam("startY") int startY) throws NoEscapeException, IllegalStartPositionException {
         mazeService.solveMaze(maze, startX, startY);
         return maze;
     }
