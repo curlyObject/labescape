@@ -4,7 +4,7 @@ var MazeBlock = (function () {
         this.wall = "O";
         this.start = "X";
         this.path = "•";
-        this.empty = "_";
+        this.empty = " ";
         this.type = type || this.wall;
     }
     MazeBlock.prototype.toggleBlockType = function () {
@@ -29,9 +29,17 @@ var MazeBlock = (function () {
     MazeBlock.prototype.isWall = function () {
         return this.type === this.wall;
     };
+    MazeBlock.prototype.isStart = function () {
+        return this.type === this.start;
+    };
+    MazeBlock.prototype.isEmpty = function () {
+        return this.type === this.empty;
+    };
+    MazeBlock.prototype.isPath = function () {
+        return this.type === this.path;
+    };
     MazeBlock.prototype.toString = function () {
-        return this.isWall() ? this.wall : " ";
-        // return this.isWall() ? this.wall : this.empty;
+        return this.isWall() ? this.wall : this.empty;
     };
     return MazeBlock;
 }());

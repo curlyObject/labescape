@@ -1,21 +1,39 @@
-<h1>Maze Builder</h1>
+<div>
+  <div class="title">
+    <h1>Maze Builder</h1>
+  </div>
 
-<div>
-<label>Maze Width</label><input type="number" name="mazeWidth" min="1" [(ngModel)]="mazeWidth" (input)="updateMazeSize(mazeHeight, mazeWidth)">
+  <div class="flexy">
+    <div class="flexy flex-column">
+      <div class="flexer">
+        <label>Maze Width</label>
+      </div>
+      <div class="flexer">
+        <label>Maze Height</label>
+      </div>
+    </div>
+    <div class="flexy flex-column">
+      <div class="flexer">
+        <input class="number" type="number" name="mazeWidth" min="1" [(ngModel)]="mazeWidth" (input)="updateMazeSize(mazeHeight, mazeWidth)">
+      </div>
+      <div class="flexer">
+        <input class="number" type="number" name="mazeHeight" min="1" [(ngModel)]="mazeHeight" (input)="updateMazeSize(mazeHeight, mazeWidth)">
+      </div>
+    </div>
+  </div>
+  <div class="infinitely-flexy flex-column mazeBox">
+    <div class="infinitely-flexy" *ngFor="let mazeRow of maze let i = index">
+      <span class="mazeBlock" *ngFor="let mazeBlock of mazeRow let j = index" (click)="toggleBlockType(mazeBlock)" (drop)="setStartPosition($event, j, i)" (dragover)="allowDrop($event, j, i)"
+      [ngClass]="{'wall': mazeBlock.isWall(), 'path': mazeBlock.isPath(), 'empty': mazeBlock.isEmpty(), 'start': mazeBlock.isStart()}">
+      </span>
+    </div>
+  </div>
+  <div draggable="true">:
+    X
+  </div>
+  <div>
+    <span><label>Start X</label>{{startX}}</span>
+    <span><label>Start Y</label>{{startY}}</span>
+  </div>
+  <button (click)="solveMaze()">Solve</button>
 </div>
-<div>
-<label>Maze Height</label><input type="number" name="mazeHeight" min="1" [(ngModel)]="mazeHeight" (input)="updateMazeSize(mazeHeight, mazeWidth)">
-</div>
-<div *ngFor="let mazeRow of maze let i = index">
-  <span *ngFor="let mazeBlock of mazeRow let j = index" (click)="toggleBlockType(mazeBlock)" (drop)="setStartPosition($event, j, i)" (dragover)="allowDrop($event, j, i)">
-    {{mazeBlock.type}}
-  </span>
-</div>
-<div draggable="true">
-  X
-</div>
-<div>
-  <span><label>Start X</label>{{startX}}</span>
-  <span><label>Start Y</label>{{startY}}</span>
-</div>
-<button (click)="solveMaze()">Solve</button>

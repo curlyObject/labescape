@@ -4,7 +4,7 @@ export class MazeBlock {
   private wall = "O";
   private start = "X";
   private path = "•";
-  private empty = "_";
+  private empty = " ";
 
 
   constructor(type?: string) {
@@ -36,9 +36,20 @@ export class MazeBlock {
     return this.type === this.wall;
   }
 
+  isStart(): boolean{
+    return this.type === this.start;
+  }
+
+  isEmpty(): boolean{
+    return this.type === this.empty;
+  }
+
+  isPath(): boolean{
+    return this.type === this.path;
+  }
+
   toString(): string{
-    return this.isWall() ? this.wall : " ";
-    // return this.isWall() ? this.wall : this.empty;
+    return this.isWall() ? this.wall : this.empty;
   }
 
 }

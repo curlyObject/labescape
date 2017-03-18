@@ -6,12 +6,13 @@ import { MazeService } from './maze.service';
 @Component({
   selector: 'maze-builder',
   templateUrl: `/app/MazeBuilder.html`,
+  styleUrls: [ 'app/mazeBuilder.component.css' ],
   providers: [MazeService]
 })
 
 export class MazeBuilderComponent  {
-  mazeWidth = 4;
-  mazeHeight = 4;
+  mazeWidth = 0;
+  mazeHeight = 0;
 
   startX: number;
   startY: number;

@@ -14,8 +14,8 @@ var maze_service_1 = require('./maze.service');
 var MazeBuilderComponent = (function () {
     function MazeBuilderComponent(mazeService) {
         this.mazeService = mazeService;
-        this.mazeWidth = 4;
-        this.mazeHeight = 4;
+        this.mazeWidth = 0;
+        this.mazeHeight = 0;
     }
     MazeBuilderComponent.prototype.updateMazeSize = function (mazeHeight, mazeWidth) {
         this.maze = [];
@@ -63,6 +63,7 @@ var MazeBuilderComponent = (function () {
         core_1.Component({
             selector: 'maze-builder',
             templateUrl: "/app/MazeBuilder.html",
+            styleUrls: ['app/mazeBuilder.component.css'],
             providers: [maze_service_1.MazeService]
         }), 
         __metadata('design:paramtypes', [maze_service_1.MazeService])
