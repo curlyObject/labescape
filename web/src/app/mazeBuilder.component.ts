@@ -9,6 +9,18 @@ export class MazeBlock {
     this.type = "O";
   }
 
+  toggleBlockType(){
+    console.log(`Toggle type`);
+    if (this.type === "O") {
+      console.log(`Removing wall`);
+      this.type = "_";
+    }
+    else if (this.type === "_") {
+      console.log(`adding wall`);
+      this.type = "O";
+    }
+  }
+
 }
 
 @Component({
@@ -19,28 +31,28 @@ export class MazeBuilderComponent  {
   mazeWidth = 4;
   mazeHeight = 4;
 
-  maze: MazeBlock[][] = [];
+  maze: MazeBlock[][];
 
-  updateMazeSize(mazeHeight, mazeWidth): void {
+  updateMazeSize(mazeHeight: number, mazeWidth: number): void {
     console.log(`changing maze size...`);
+    this.maze = [];
     let i: number = 0;
-    console.log(i);
-    console.log(mazeHeight);
-    let j: number = 0;
-    console.log(j);
-    console.log(mazeWidth);
     for (i; i < mazeHeight; i++){
-      console.log(`First loop`);
       if (!this.maze[i]){
         this.maze[i] = [];
       }
+      let j: number = 0;
       for (j; j < mazeWidth; j++){
         if (!this.maze[i][j]){
           this.maze[i][j] = new MazeBlock();
-          console.log(`Making maze block`);
         }
       }
     }
+  }
+
+  toggleBlockType(block: MazeBlock){
+    block.toggleBlockType();
+    console.log(this.maze);
   }
 
 }

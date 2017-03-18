@@ -6,12 +6,9 @@
 <h3>{{mazeHeight}}</h3>
 
 <div *ngFor="let mazeRow of maze">
-  1
-  <span *ngFor="let mazeBlock of mazeRow">
-    2
+  <span *ngFor="let mazeBlock of mazeRow" (click)="toggleBlockType(mazeBlock)">
     {{mazeBlock.type}}
   </span>
-
 </div>
 
 
