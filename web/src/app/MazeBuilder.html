@@ -28,12 +28,25 @@
       </span>
     </div>
   </div>
-  <div draggable="true">:
-    X
-  </div>
-  <div>
-    <span><label>Start X</label>{{startX}}</span>
-    <span><label>Start Y</label>{{startY}}</span>
+  <div class="mazeBlock start" draggable="true">:
+  </div> Drag me to place me
+  <div class="flexy">
+    <div class="flexy flex-column">
+      <div class="flexer">
+        <label>Start X</label>
+      </div>
+      <div class="flexer">
+        <label>Start Y</label>
+      </div>
+    </div>
+    <div class="flexy flex-column">
+      <div class="flexer">
+        {{startX}}
+      </div>
+      <div class="flexer">
+        {{startY}}
+      </div>
+    </div>
   </div>
   <button (click)="solveMaze()">Solve</button>
 </div>
