@@ -1,41 +1,29 @@
 import { Component } from '@angular/core';
 
-export class MazeBlock {
-  xPosition: number;
-  yPosition: number;
-  type: string;
-
-  constructor() {
-    this.type = "O";
-  }
-
-  toggleBlockType(){
-    console.log(`Toggle type`);
-    if (this.type === "O") {
-      console.log(`Removing wall`);
-      this.type = "_";
-    }
-    else if (this.type === "_") {
-      console.log(`adding wall`);
-      this.type = "O";
-    }
-  }
-
-}
+import { MazeBlock } from './MazeBlock';
+import { MazeService } from './maze.service';
 
 @Component({
   selector: 'maze-builder',
   templateUrl: `/app/MazeBuilder.html`,
+  providers: [MazeService]
 })
+
 export class MazeBuilderComponent  {
   mazeWidth = 4;
   mazeHeight = 4;
 
+  startX: number;
+  startY: number;
+
   maze: MazeBlock[][];
 
+  constructor(private mazeService: MazeService) { }
+
   updateMazeSize(mazeHeight: number, mazeWidth: number): void {
-    console.log(`changing maze size...`);
     this.maze = [];
+    this.startX = undefined;
+    this.startY = undefined;
     let i: number = 0;
     for (i; i < mazeHeight; i++){
       if (!this.maze[i]){
@@ -52,7 +40,30 @@ export class MazeBuilderComponent  {
 
   toggleBlockType(block: MazeBlock){
     block.toggleBlockType();
-    console.log(this.maze);
+  }
+
+  solveMaze(){
+    this.mazeService.solveMaze(this.maze, this.startX, this.startY)
+      .then((solvedMaze) => this.maze = solvedMaze);
+  }
+
+  allowDrop(ev : Event, startX: number, startY: number){
+    if (!this.maze[startY][startX].isWall()) {
+      ev.preventDefault();
+    }
+  }
+
+  setStartPosition(ev : Event, startX: number, startY: number){
+    console.log("Set Start position");
+    if (!this.maze[startY][startX].isWall()) {
+      ev.preventDefault();
+      if (this.startX && this.startY){
+        this.maze[this.startY][this.startX].toggleStartPosition();
+      }
+      this.startX = startX;
+      this.startY = startY;
+      this.maze[this.startY][this.startX].toggleStartPosition();
+    }
   }
 
 }

@@ -1,14 +1,21 @@
+<h1>Maze Builder</h1>
+
+<div>
 <label>Maze Width</label><input type="number" name="mazeWidth" min="1" [(ngModel)]="mazeWidth" (input)="updateMazeSize(mazeHeight, mazeWidth)">
+</div>
+<div>
 <label>Maze Height</label><input type="number" name="mazeHeight" min="1" [(ngModel)]="mazeHeight" (input)="updateMazeSize(mazeHeight, mazeWidth)">
-
-<h1>Hello</h1>
-<h3>{{mazeWidth}}</h3>
-<h3>{{mazeHeight}}</h3>
-
-<div *ngFor="let mazeRow of maze">
-  <span *ngFor="let mazeBlock of mazeRow" (click)="toggleBlockType(mazeBlock)">
+</div>
+<div *ngFor="let mazeRow of maze let i = index">
+  <span *ngFor="let mazeBlock of mazeRow let j = index" (click)="toggleBlockType(mazeBlock)" (drop)="setStartPosition($event, j, i)" (dragover)="allowDrop($event, j, i)">
     {{mazeBlock.type}}
   </span>
 </div>
-
-
+<div draggable="true">
+  X
+</div>
+<div>
+  <span><label>Start X</label>{{startX}}</span>
+  <span><label>Start Y</label>{{startY}}</span>
+</div>
+<button (click)="solveMaze()">Solve</button>

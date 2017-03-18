@@ -9,32 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var MazeBlock = (function () {
-    function MazeBlock() {
-        this.type = "O";
-    }
-    MazeBlock.prototype.toggleBlockType = function () {
-        console.log("Toggle type");
-        if (this.type === "O") {
-            console.log("Removing wall");
-            this.type = "_";
-        }
-        else if (this.type === "_") {
-            console.log("adding wall");
-            this.type = "O";
-        }
-    };
-    return MazeBlock;
-}());
-exports.MazeBlock = MazeBlock;
+var MazeBlock_1 = require('./MazeBlock');
+var maze_service_1 = require('./maze.service');
 var MazeBuilderComponent = (function () {
-    function MazeBuilderComponent() {
+    function MazeBuilderComponent(mazeService) {
+        this.mazeService = mazeService;
         this.mazeWidth = 4;
         this.mazeHeight = 4;
     }
     MazeBuilderComponent.prototype.updateMazeSize = function (mazeHeight, mazeWidth) {
-        console.log("changing maze size...");
         this.maze = [];
+        this.startX = undefined;
+        this.startY = undefined;
         var i = 0;
         for (i; i < mazeHeight; i++) {
             if (!this.maze[i]) {
@@ -43,21 +29,43 @@ var MazeBuilderComponent = (function () {
             var j = 0;
             for (j; j < mazeWidth; j++) {
                 if (!this.maze[i][j]) {
-                    this.maze[i][j] = new MazeBlock();
+                    this.maze[i][j] = new MazeBlock_1.MazeBlock();
                 }
             }
         }
     };
     MazeBuilderComponent.prototype.toggleBlockType = function (block) {
         block.toggleBlockType();
-        console.log(this.maze);
+    };
+    MazeBuilderComponent.prototype.solveMaze = function () {
+        var _this = this;
+        this.mazeService.solveMaze(this.maze, this.startX, this.startY)
+            .then(function (solvedMaze) { return _this.maze = solvedMaze; });
+    };
+    MazeBuilderComponent.prototype.allowDrop = function (ev, startX, startY) {
+        if (!this.maze[startY][startX].isWall()) {
+            ev.preventDefault();
+        }
+    };
+    MazeBuilderComponent.prototype.setStartPosition = function (ev, startX, startY) {
+        console.log("Set Start position");
+        if (!this.maze[startY][startX].isWall()) {
+            ev.preventDefault();
+            if (this.startX && this.startY) {
+                this.maze[this.startY][this.startX].toggleStartPosition();
+            }
+            this.startX = startX;
+            this.startY = startY;
+            this.maze[this.startY][this.startX].toggleStartPosition();
+        }
     };
     MazeBuilderComponent = __decorate([
         core_1.Component({
             selector: 'maze-builder',
             templateUrl: "/app/MazeBuilder.html",
+            providers: [maze_service_1.MazeService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [maze_service_1.MazeService])
     ], MazeBuilderComponent);
     return MazeBuilderComponent;
 }());

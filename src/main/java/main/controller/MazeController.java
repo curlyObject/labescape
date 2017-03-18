@@ -22,6 +22,7 @@ public class MazeController {
         this.mazeService = mazeService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/solve", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_UTF8_VALUE})
     public @ResponseBody String solveMaze(@RequestParam("maze") String maze,
                                           @RequestParam("mazeWidth") int mazeWidth,
