@@ -130,6 +130,31 @@ public class LabEscapeTest {
     }
 
     @Test
+    public void testEscape_OneWayOut_Complex_LongTime() throws Exception{
+        char[][] maze = {   new char[]{'O', 'O', 'O', 'O', 'O', 'O'},
+                            new char[]{'O', ' ', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', ' ', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', ' ', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', ' ', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', ' ', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', ' ', ' ', ' ', ' ', 'O'},
+                            new char[]{'O', 'O', 'O', 'O', ' ', 'O'}};
+        int startX = 1, startY = 6;
+        char[][] mazeWithEscape = LabEscape.drawPathForEscape(maze, startX, startY);
+
+        assertThat(mazeWithEscape)
+                .hasSize(8)
+                .contains(new char[]{'O', 'O', 'O', 'O', 'O', 'O'}, Index.atIndex(0))
+                .contains(new char[]{'O', ' ', ' ', ' ', ' ', 'O'}, Index.atIndex(1))
+                .contains(new char[]{'O', ' ', ' ', ' ', ' ', 'O'}, Index.atIndex(2))
+                .contains(new char[]{'O', ' ', ' ', ' ', ' ', 'O'}, Index.atIndex(3))
+                .contains(new char[]{'O', ' ', ' ', ' ', ' ', 'O'}, Index.atIndex(4))
+                .contains(new char[]{'O', ' ', ' ', ' ', ' ', 'O'}, Index.atIndex(5))
+                .contains(new char[]{'O', '•', '•', '•', '•', 'O'}, Index.atIndex(6))
+                .contains(new char[]{'O', 'O', 'O', 'O', '•', 'O'}, Index.atIndex(7));
+    }
+
+    @Test
     public void testEscape_OneWayOut_Complex_Rectangle_OneShorterThanTheOtherEscape() throws Exception{
         char[][] maze = {   new char[]{'O', 'O', 'O', 'O', 'O', 'O'},
                             new char[]{'O', ' ', ' ', 'O', ' ', 'O'},

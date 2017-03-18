@@ -51,6 +51,9 @@ public class LabEscape {
             currentPath.setProvidesEscape(true);
             return Collections.singleton(currentPath);
         }
+        if (doesShorterSuccessfulPathExist(allPaths, currentPath.getNumberOfSteps())){
+            return Collections.singleton(currentPath);
+        }
         //TODO Get it to find if there is a path that has gotten to the current coordinate in less steps than you and Kill this Path if so
         if (isTopOpen(labyrinth, currentPosition)) {
             allPaths.addAll(findPaths(labyrinth, currentPosition.moveUp(), currentPath.deepClone(), allPaths));
@@ -67,6 +70,10 @@ public class LabEscape {
         return allPaths;
     }
 
+    private static boolean doesShorterSuccessfulPathExist(Set<Path> allPaths, int currentLength){
+        return allPaths.stream().filter(Path::isProvidesEscape).map(Path::getNumberOfSteps).min(Integer::compareTo).orElse(Integer.MAX_VALUE) <= currentLength;
+    }
+
     private static Path getShortestPath(Set<Path> paths) throws NoEscapeException {
         return paths.stream().filter(Path::isProvidesEscape).min(Comparator.comparingInt(Path::getNumberOfSteps)).orElseThrow(NoEscapeException::new);
     }
@@ -74,7 +81,7 @@ public class LabEscape {
     /**
      * Checks if you have reached the deg of the labyrinth and escaped.
      * Especially verbose styling for debugging
-     * @param labyrinth The maze to espcape
+     * @param labyrinth The maze to escape
      * @param currentPosition The current position in the search
      * @return true if on any edge of the maze.
      */
