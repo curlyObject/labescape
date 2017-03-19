@@ -24,10 +24,11 @@ export class MazeBlock {
   }
 
   toggleStartPosition(){
+
     if (this.type === this.start){
       this.type = this.empty;
     }
-    else if (this.type === this.empty){
+    else if (this.type === this.empty || this.isPath()){
       this.type = this.start;
     }
   }

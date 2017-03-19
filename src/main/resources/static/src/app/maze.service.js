@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
-var MazeBlock_1 = require('./MazeBlock');
+var MazeBlock_1 = require('./MazeBlock.js');
 var MazeService = (function () {
     function MazeService(http) {
         this.http = http;
@@ -45,11 +45,20 @@ var MazeService = (function () {
         return mazeString;
     };
     MazeService.prototype.handleError = function (error) {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+        var errMsg;
+        if (error instanceof http_1.Response) {
+            var body = error.json() || '';
+            var err = body.message || JSON.stringify(body);
+            errMsg = "" + err;
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Promise.reject(errMsg);
     };
     MazeService = __decorate([
-        core_1.Injectable(), 
+        core_1.Injectable(),
         __metadata('design:paramtypes', [http_1.Http])
     ], MazeService);
     return MazeService;

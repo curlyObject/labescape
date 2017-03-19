@@ -9,13 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var MazeBlock_1 = require('./MazeBlock');
-var maze_service_1 = require('./maze.service');
+var MazeBlock_1 = require('./MazeBlock.js');
+var maze_service_1 = require('./maze.service.js');
 var MazeBuilderComponent = (function () {
     function MazeBuilderComponent(mazeService) {
         this.mazeService = mazeService;
         this.mazeWidth = 0;
         this.mazeHeight = 0;
+        this.solving = false;
     }
     MazeBuilderComponent.prototype.updateMazeSize = function (mazeHeight, mazeWidth) {
         this.maze = [];
@@ -39,8 +40,19 @@ var MazeBuilderComponent = (function () {
     };
     MazeBuilderComponent.prototype.solveMaze = function () {
         var _this = this;
+        this.errorMessage = undefined;
+        this.solving = true;
         this.mazeService.solveMaze(this.maze, this.startX, this.startY)
-            .then(function (solvedMaze) { return _this.maze = solvedMaze; });
+            .then(function (solvedMaze) {
+            _this.maze = solvedMaze;
+            _this.startX = undefined;
+            _this.startY = undefined;
+            _this.solving = false;
+        })
+            .catch(function (errorMessage) {
+            _this.solving = false;
+            _this.errorMessage = errorMessage;
+        });
     };
     MazeBuilderComponent.prototype.allowDrop = function (ev, startX, startY) {
         if (!this.maze[startY][startX].isWall()) {
@@ -48,7 +60,6 @@ var MazeBuilderComponent = (function () {
         }
     };
     MazeBuilderComponent.prototype.setStartPosition = function (ev, startX, startY) {
-        console.log("Set Start position");
         if (!this.maze[startY][startX].isWall()) {
             ev.preventDefault();
             if (this.startX && this.startY) {
@@ -62,10 +73,10 @@ var MazeBuilderComponent = (function () {
     MazeBuilderComponent = __decorate([
         core_1.Component({
             selector: 'maze-builder',
-            templateUrl: "/app/MazeBuilder.html",
-            styleUrls: ['app/mazeBuilder.component.css'],
+            templateUrl: "/src/app/MazeBuilder.html",
+            styleUrls: ['/src/app/mazeBuilder.component.css'],
             providers: [maze_service_1.MazeService]
-        }), 
+        }),
         __metadata('design:paramtypes', [maze_service_1.MazeService])
     ], MazeBuilderComponent);
     return MazeBuilderComponent;

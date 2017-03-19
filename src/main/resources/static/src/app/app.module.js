@@ -11,9 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
-var mazeBuilder_component_1 = require('./mazeBuilder.component');
+var mazeBuilder_component_1 = require('./mazeBuilder.component.js');
 var forms_1 = require("@angular/forms");
-var maze_service_1 = require("./maze.service");
+var maze_service_1 = require("./maze.service.js");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,7 +25,7 @@ var AppModule = (function () {
             declarations: [mazeBuilder_component_1.MazeBuilderComponent],
             providers: [maze_service_1.MazeService],
             bootstrap: [mazeBuilder_component_1.MazeBuilderComponent]
-        }), 
+        }),
         __metadata('design:paramtypes', [])
     ], AppModule);
     return AppModule;

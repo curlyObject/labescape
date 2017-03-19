@@ -28,6 +28,9 @@
       </span>
     </div>
   </div>
+  <div>
+    {{errorMessage}}
+  </div>
   <div class="mazeBlock start" draggable="true">:
   </div> Drag me to place me
   <div class="flexy">
@@ -48,5 +51,6 @@
       </div>
     </div>
   </div>
-  <button (click)="solveMaze()">Solve</button>
+  <button *ngIf="!solving" (click)="solveMaze()">Solve</button>
+  <button *ngIf="solving" disabled>Solving</button>
 </div>

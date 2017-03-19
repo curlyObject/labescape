@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Http, Response} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -41,9 +41,17 @@ private convertMazeToString(maze: MazeBlock[][] ): string{
     return mazeString;
 }
 
-private handleError(error: any): Promise<any> {
-  console.error('An error occurred', error);
-  return Promise.reject(error.message || error);
-}
+  private handleError (error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.message || JSON.stringify(body);
+      errMsg = `${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Promise.reject(errMsg);
+  }
 
 }

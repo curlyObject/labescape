@@ -1,0 +1,84 @@
+h1 {
+  color: black;
+  font-size: 250%;
+}
+
+body {
+  background-color: #BBBBFF;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flexy {
+  display: flex;
+}
+
+.infinitely-flexy {
+  display: inline-flex;
+}
+
+.flexer {
+  flex: 1;
+  margin: 3px
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.lefty {
+  align-items: flex-start;
+}
+
+.title {
+  background-color: #DDDDFF;
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+  box-shadow: 0px 5px 5px #888888;
+}
+
+.title h1 {
+  margin-bottom: 0px;
+  margin-top: 12px;
+}
+
+label {
+  width: 20%;
+  flex:none;
+}
+
+.mazeBox {
+  margin: 30px;
+  background-color: #EEEEEE;
+  min-height: 400px;
+  min-width: 400px;
+  overflow: auto;
+}
+
+.mazeBlock {
+  height: 38px;
+  width: 38px;
+  border: 1px dashed #AAAAAA;
+}
+
+.wall {
+  background-color: #444444;
+}
+
+.path {
+  background-color: #34A951;
+}
+
+.start {
+  background-color: #A93434;
+}
+
+.empty {
+  background-color: #EEEEEE;
+}
+
+.number {
+  max-width: 100px;
+}
+

@@ -17,6 +17,10 @@ export class MazeBuilderComponent  {
   startX: number;
   startY: number;
 
+  solving: boolean = false;
+
+  errorMessage: string;
+
   maze: MazeBlock[][];
 
   constructor(private mazeService: MazeService) { }
@@ -44,8 +48,18 @@ export class MazeBuilderComponent  {
   }
 
   solveMaze(){
+    this.errorMessage = undefined;
+    this.solving = true;
     this.mazeService.solveMaze(this.maze, this.startX, this.startY)
-      .then((solvedMaze) => this.maze = solvedMaze);
+      .then(solvedMaze => {this.maze = solvedMaze;
+                            this.startX = undefined;
+                            this.startY = undefined;
+                            this.solving = false;
+      })
+      .catch(errorMessage => {
+        this.solving = false;
+        this.errorMessage = errorMessage;
+      });
   }
 
   allowDrop(ev : Event, startX: number, startY: number){
@@ -55,7 +69,6 @@ export class MazeBuilderComponent  {
   }
 
   setStartPosition(ev : Event, startX: number, startY: number){
-    console.log("Set Start position");
     if (!this.maze[startY][startX].isWall()) {
       ev.preventDefault();
       if (this.startX && this.startY){
