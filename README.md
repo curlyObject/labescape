@@ -1,3 +1,5 @@
+Run the project by executing `./gradlew bootRun` and then navigate to http://localhost:8080/src/index.html
+
 Example input
 
 	OOOOOOOOOO
